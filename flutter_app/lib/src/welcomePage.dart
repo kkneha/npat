@@ -32,7 +32,8 @@ class _WelcomePageState extends State<WelcomePage> {
                   blurRadius: 8,
                   spreadRadius: 2)
             ],
-            color: Colors.white),
+            color: Colors.black),
+
         child: Text(
           'Login',
           style: TextStyle(fontSize: 20, color: Color(0xfff7892b)),
@@ -47,17 +48,18 @@ class _WelcomePageState extends State<WelcomePage> {
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => SignUpPage()));
       },
+
       child: Container(
         width: MediaQuery.of(context).size.width,
         padding: EdgeInsets.symmetric(vertical: 13),
         alignment: Alignment.center,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(5)),
-          border: Border.all(color: Colors.white, width: 2),
+          border: Border.all(color: Colors.black, width: 2),
         ),
         child: Text(
           'Register now',
-          style: TextStyle(fontSize: 20, color: Colors.white),
+          style: TextStyle(fontSize: 20, color: Colors.black),
         ),
       ),
     );
@@ -75,16 +77,16 @@ class _WelcomePageState extends State<WelcomePage> {
             textStyle: Theme.of(context).textTheme.display1,
             fontSize: 30,
             fontWeight: FontWeight.w700,
-            color: Colors.white,
+            color: Colors.black,
           ),
-          children: [
+         children: [
             TextSpan(
               text: 'Place ',
               style: TextStyle(color: Colors.black, fontSize: 30),
             ),
             TextSpan(
               text: 'Animal ',
-              style: TextStyle(color: Colors.white, fontSize: 30),
+              style: TextStyle(color: Colors.black, fontSize: 30),
             ),
 
         TextSpan(
@@ -94,16 +96,33 @@ class _WelcomePageState extends State<WelcomePage> {
         ]),
     );
   }
-
+  Widget showLogo() {
+    return new Hero(
+      tag: 'hero',
+      child: Padding(
+        padding: EdgeInsets.fromLTRB(0.0, 70.0, 0.0, 0.0),
+        child: CircleAvatar(
+          backgroundColor: Colors.transparent,
+          radius: 48.0,
+          child: Image.asset('assets/flutter-icon.png'),
+        ),
+      ),
+    );
+  }
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
-      body:SingleChildScrollView(
+      body: SingleChildScrollView(
+
         child:Container(
           padding: EdgeInsets.symmetric(horizontal: 20),
           height: MediaQuery.of(context).size.height,
+
           decoration: BoxDecoration(
+
               borderRadius: BorderRadius.all(Radius.circular(5)),
+              color: Colors.white,
               boxShadow: <BoxShadow>[
                 BoxShadow(
                     color: Colors.grey.shade200,
@@ -111,31 +130,33 @@ class _WelcomePageState extends State<WelcomePage> {
                     blurRadius: 5,
                     spreadRadius: 2)
               ],
-              gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [Color(0xff00b8d4), Color(0xff004d40)])),
+          ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
+           children: <Widget>[
+             Image.asset(
+               'assets/images/npat logo.png', width: 250, height: 250,
+             ),
               _title(),
+
               SizedBox(
-                height: 80,
-              ),
+               height: 20,
+             ),
               _submitButton(),
               SizedBox(
                 height: 20,
               ),
               _signUpButton(),
-              SizedBox(
+                SizedBox(
                 height: 20,
-              ),
+                ),
 
             ],
           ),
         ),
       ),
     );
+
   }
 }

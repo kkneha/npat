@@ -5,19 +5,19 @@ import 'package:google_fonts/google_fonts.dart';
 import 'displayLetterPage.dart';
 
 // ignore: camel_case_types
-class readyPage extends StatefulWidget {
-  readyPage({Key key, this.title}) : super(key: key);
+class scorePage extends StatefulWidget {
+  scorePage({Key key, this.title}) : super(key: key);
 
   final String title;
 
   @override
-  _Readypagestate createState() => _Readypagestate();
+  _scorePagestate createState() => _scorePagestate();
 }
 
 List<String> names = <String>['A', 'B', 'C'];
 List<String> scores = <String>["200","300","400"];
 
-class _Readypagestate extends State<readyPage> {
+class _scorePagestate extends State<scorePage> {
   bool _active = false;
 
   String get userAvatarUrl => null;
@@ -85,8 +85,7 @@ class _Readypagestate extends State<readyPage> {
             radius: 38.0,
             child: Image.asset('assets/flutter-icon.png'),),
           title : Text(names[i]),
-          subtitle : Text(scores[i]),
-          trailing: _readyBox(),
+          trailing : Text(scores[i]),
         );
       },
     );
@@ -126,19 +125,18 @@ class _Readypagestate extends State<readyPage> {
         )
     );
   }
-Widget build(BuildContext context) {
+  Widget build(BuildContext context) {
     return Scaffold(
-       body: StreamBuilder(
-           builder: (context, entries) {
-           return names.length > 0
+      body: StreamBuilder(
+        builder: (context, entries) {
+          return names.length > 0
               ? Column(
             children: <Widget>[
 
-              
+
               SizedBox(height: 30),
               _title(),
               Expanded(child: _membersListView()),
-              _viewletterbutton(),
 
             ],
           )

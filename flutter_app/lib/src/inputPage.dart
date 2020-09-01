@@ -1,0 +1,133 @@
+import 'package:flutter/material.dart';
+import 'package:flutterapp/src/scorePage.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'Widget/bezierContainer.dart';
+import 'scorePage.dart';
+
+// ignore: camel_case_types
+class inputPage extends StatefulWidget {
+  inputPage({Key key, this.title}) : super(key: key);
+
+  final String title;
+
+  @override
+  _InputPageState createState() => _InputPageState();
+}
+
+class _InputPageState extends State<inputPage> {
+
+    Widget _entryField(String title) {
+    return Container(
+      margin: EdgeInsets.symmetric(vertical: 10),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,        children: <Widget>[
+          Text(
+            title,
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          TextField(
+                  decoration: InputDecoration(
+                  border: InputBorder.none,
+                  fillColor: Color(0xfff3f3f4),
+                  filled: true))
+        ],
+      ),
+    );
+  }
+
+  Widget _submitButton() {
+    return InkWell(
+        onTap: () {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => scorePage()));
+        },
+        child: Container(
+          width: MediaQuery.of(context).size.width,
+          padding: EdgeInsets.symmetric(vertical: 15),
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.circular(5)),
+              boxShadow: <BoxShadow>[
+                BoxShadow(
+                    color: Colors.grey.shade200,
+                    offset: Offset(2, 4),
+                    blurRadius: 5,
+                    spreadRadius: 2)
+              ],
+              gradient: LinearGradient(
+                  begin: Alignment.centerLeft,
+                  end: Alignment.centerRight,
+                  colors: [Color(0xff00b8d4), Color(0xff004d40)])),
+          child: Text(
+            'Submit',
+            style: TextStyle(fontSize: 20, color: Colors.white),
+          ),
+        )
+    );
+  }
+
+
+  Widget _title() {
+    return RichText(
+      textAlign: TextAlign.center,
+      text: TextSpan(
+          text: 'A ',
+          style: GoogleFonts.portLligatSans(
+            // ignore: deprecated_member_use
+            textStyle: Theme.of(context).textTheme.display1,
+            fontSize: 40,
+            fontWeight: FontWeight.w700,
+            color: Color(0xff004d40),
+          ),
+      ),
+    );
+  }
+
+  Widget _inputfieldWidget() {
+    return Column(
+      children: <Widget>[
+        _entryField("Enter Name"),
+        _entryField("Enter Place"),
+        _entryField("Enter Animal"),
+        _entryField("Enter Thing"),
+      ],
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
+    return Scaffold(
+        body: Container(
+          height: height,
+          child: Stack(
+            children: <Widget>[
+              Positioned(
+                  top: -height * .15,
+                  right: -MediaQuery.of(context).size.width * .4,
+                  child: BezierContainer()),
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 20),
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      SizedBox(height: 25),
+                      _title(),
+                      SizedBox(height: 50),
+                      _inputfieldWidget(),
+                      SizedBox(height: 20),
+                      _submitButton(),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ));
+  }
+}

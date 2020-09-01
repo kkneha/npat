@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutterapp/src/signup.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:flutterapp/src/loginPage.dart';
 import 'Widget/bezierContainer.dart';
 import 'package:flutterapp/src/readyPage.dart';
 
@@ -115,6 +113,7 @@ class _Homepagestate extends State<Homepage> {
             textStyle: Theme
                 .of(context)
                 .textTheme
+                // ignore: deprecated_member_use
                 .display1,
             fontSize: 30,
             fontWeight: FontWeight.w700,
